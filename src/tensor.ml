@@ -1,7 +1,43 @@
 exception Empty
 exception Not_matrix
 exception Not_vector
+open Array
 
+let get_row mat =
+  Array.length mat;;
+
+let get_col mat =
+  Array.length (Array.get mat 0)
+       
+let get_shape mat =
+  let row_a = Array.length mat in
+  let col_a = Array.length (Array.get mat 0) in
+  (row_a, col_a);;
+
+let dot_mat mat_a mat_b =
+  let (row_a, col_a) = get_shape mat_a in
+  let (row_b, col_b) = get_shape mat_b in
+  let mat_c = Array.make_matrix row_a col_b 0. in
+  (* TODO: need to accelerate *)
+  for i = 0 to row_a-1 do
+    for j = 0 to row_b-1 do
+      let mat_row_a = mat_a.(i).(j) in
+      for k = 0 to col_b-1 do
+        mat_c.(i).(k) <- mat_c.(i).(k) +. mat_row_a *. mat_b.(j).(k)
+      done;
+    done;
+  done;
+  mat_c;;
+
+let scalar_mat w mat =
+  Array.map (fun arr -> (Array.map (fun x -> x *. w) arr)) mat;; 
+
+let map_of_mat f mat =
+  match mat with
+  | [|[||]|] -> [|[||]|]
+  | mat -> Array.map (fun arr -> (Array.map f arr)) mat;;
+  
+  (*
 module Tensor =
   struct
     type tensor =
@@ -54,3 +90,4 @@ module Tensor =
          done;
 
 end;;
+ *)

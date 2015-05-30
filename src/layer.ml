@@ -23,5 +23,5 @@ let forward layer x =
   let fx = layer.fx in
   let w = layer.weights in
   let b = layer.bias in
-  let output = f (w * fx(x) + b) in
+  let output = f (w *. fx(x) +. b) in
   output;;

@@ -7,3 +7,11 @@
 *.cmx
 *.cmxs
 *.cmxa
+
+
+/bin/*
+/_build/*
+/src/_build/*
+.gitignore
+*.byte
+*.native
