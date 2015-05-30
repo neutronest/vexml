@@ -1,0 +1,10 @@
+### Starting build.
+# Target: test_tensor.ml.depends, tags: { extension:ml, file:test_tensor.ml, ocaml, ocamldep, package(oUnit), quiet }
+ocamlfind ocamldep -package oUnit -modules test_tensor.ml > test_tensor.ml.depends
+# Target: test_tensor.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:test_tensor.cmo, file:test_tensor.ml, implem, ocaml, package(oUnit), quiet }
+ocamlfind ocamlc -c -package oUnit -o test_tensor.cmo test_tensor.ml
++ ocamlfind ocamlc -c -package oUnit -o test_tensor.cmo test_tensor.ml
+File "test_tensor.ml", line 2, characters 5-11:
+Error: Unbound module Tensor
+Command exited with code 2.
+# Compilation unsuccessful.
